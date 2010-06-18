@@ -1,11 +1,8 @@
 (** 
    The basic execution unit.
-   @author Miles Egan
-   @version $Rev: 86 $
-   @id $Id$
  *)
 
-type rsh_type = Ssh | Rsh | Pixrsh
+type rsh_type = Ssh | Rsh
 
 class job user prog command host =
   let (p_read, p_write) = Unix.pipe () in
@@ -25,7 +22,6 @@ class job user prog command host =
                      "-o"; "StrictHostKeyChecking no"; 
                      "-o"; "FallBackToRsh no" |])
         | Rsh -> ("rsh", [|"-n"; "-l"; user |])
-        | Pixrsh -> ("pixrsh", [||])
         in
         Unix.execvp exe (Array.append [| exe |] (Array.append opts [| host; command |]))
       end;

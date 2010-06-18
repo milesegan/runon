@@ -29,8 +29,6 @@ let options = [
    "Use ssh instead of rsh.");
   ("-u", Arg.String (fun x -> rsh_user := x), 
    "Log into remote machine as a different user.");
-  ("-p", Arg.Unit (fun x -> rsh_cmd := Job.Pixrsh),
-   "Use pixrsh instead of rsh.");
   ("-t", Arg.Float (fun x -> timeout := x), 
    Printf.sprintf "Seconds to wait before timing out a host.  Default is %2.0f seconds." !timeout);
 ]
